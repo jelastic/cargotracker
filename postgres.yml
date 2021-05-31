@@ -2,7 +2,11 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres
+  namespace: default
 spec:
+  progressDeadlineSeconds: 600
+  replicas: 1
+  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: postgres
@@ -12,24 +16,25 @@ spec:
         app: postgres
     spec:
       containers:
-        - image: postgres
+      - env:
+        - name: POSTGRES_USER
+          valueFrom: 
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom: 
+            secretKeyRef:
+              name: postgres-secret
+              key: POSTGRES_PASSWORD
+        - name: PGDATA
+          value: /var/lib/postgresql/data/pgdata
+        image: postgres
+        imagePullPolicy: Always
+        name: postgres
+        ports:
+        - containerPort: 5432
           name: postgres
-          env:
-            - name: POSTGRES_USER
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_user
-            - name: POSTGRES_PASSWORD
-              valueFrom:
-                configMapKeyRef:
-                  name: postgres-config
-                  key: postgres_password          
-            - name: PGDATA
-              value: /var/lib/postgresql/data/pgdata
-          ports:
-            - containerPort: 5432
-              name: postgres
 ---
 apiVersion: v1
 kind: Service
@@ -41,3 +46,4 @@ spec:
     - port: 5432
   selector:
     app: postgres
+    
