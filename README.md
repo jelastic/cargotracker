@@ -113,9 +113,18 @@ we do use a very representative set. You'll find that you'll learn a fair amount
 by simply digging into the code to see how things are implemented.
 
 ## Cloud Demo
-Cargo Tracker is deployed to Kubernetes on the cloud using GitHub Actions workflows. You can find the demo deployment on the Scaleforce cloud (https://cargo-tracker.j.scaleforce.net). This project is very thankful to our sponsors [Jelastic](https://jelastic.com) and [Scaleforce](https://www.scaleforce.net) for hosting the demo! The deployment and all data is refreshed nightly. On the cloud Cargo Tracker uses PostgreSQL as the database. The [GitHub Container Registry](https://ghcr.io/eclipse-ee4j/cargo-tracker) is used to publish Docker images.
+Cargo Tracker can be deployed to Kubernetes on the cloud. To do this just [create a Kuberentes Cluster](https://jelastic.com/blog/kubernetes-cluster-scaling-pay-per-use-hosting/) and apply three files from this repository:
+ 
+* **postgres-secret.yaml**
+* **postgres.yaml**
+* **cargo-tracker.yaml** 
 
-![Cargo Tracker sponsors](sponsors.png)
+> **Note**:  
+ The Cargo Tracker application requires root context path "**/**" should be released. If not, just delete the ingress that holds it before applying **cargo-tracker.yaml**. In case of Jelastic clean Kubernetes cluster issue command: ***kubectl delete ing helloworld***
+
+Application will be available by **Open in Browser** button.
+
+![Jelastic dashboard OiB](cargo_tracker_oib.png)
 
 ## Java EE 7
 A Java EE 7, Java SE 8, Payara 4.1 version of Cargo Tracker is available under the ['javaee7' branch](https://github.com/eclipse-ee4j/cargotracker/tree/javaee7).
