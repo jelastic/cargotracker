@@ -17,7 +17,7 @@ A slide deck introducing the
 fundamentals of the project is available on the official Eclipse 
 Foundation [Jakarta EE SlideShare account](https://www.slideshare.net/Jakarta_EE/applied-domaindriven-design-blueprints-for-jakarta-ee).
 
-![Cargo Tracker cover](cargo_tracker_cover.png)
+![Cargo Tracker cover](images/cargo_tracker_cover.png)
  
 ## Getting Started
 
@@ -124,7 +124,7 @@ Cargo Tracker can be deployed to Kubernetes on the cloud. To do this just [creat
 
 Application will be available by **Open in Browser** button.
 
-![Jelastic dashboard OiB](cargo_tracker_oib.png)
+![Jelastic dashboard OiB](images/cargo_tracker_oib.png)
 
 ## Java EE 7
 A Java EE 7, Java SE 8, Payara 4.1 version of Cargo Tracker is available under the ['javaee7' branch](https://github.com/eclipse-ee4j/cargotracker/tree/javaee7).
