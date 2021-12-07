@@ -15,7 +15,7 @@ For further details on the project, please visit: https://eclipse-ee4j.github.io
 
 A slide deck introducing the
 fundamentals of the project is available on the official Eclipse 
-Foundation [Jakarta EE SlideShare account](https://www.slideshare.net/Jakarta_EE/applied-domaindriven-design-blueprints-for-jakarta-ee).
+Foundation [Jakarta EE SlideShare account](https://www.slideshare.net/Jakarta_EE/applied-domaindriven-design-blueprints-for-jakarta-ee). A recording of the slide deck is available on the official [Jakarta EE YouTube account](https://www.youtube.com/watch?v=pKmmZd-3mhA).
 
 ![Cargo Tracker cover](images/cargo_tracker_cover.png)
  
@@ -85,7 +85,7 @@ archived under /tmp/failed.
 Don't worry about making mistakes. The application is intended to be fairly 
 error tolerant. If you do come across issues, you should [report them](https://github.com/eclipse-ee4j/cargotracker/issues).
 
-You can simply remove ./cargo-tracker-database from the file system to restart fresh. This directory will typically be under $your-payara-installation/glassfish/domains/domain1/config.
+You can simply remove ./cargo-tracker-data from the file system to restart fresh. This directory will typically be under $your-payara-installation/glassfish/domains/domain1/config.
 
 You can also use the soapUI scripts included in the source code to explore the 
 REST interfaces as well as the numerous unit tests covering the code base 
@@ -137,10 +137,7 @@ In addition, for all XML, XHTML and HTML files we use a column/line width of 100
 For further guidance on contributing including the project roadmap, please look [here](CONTRIBUTING.md).
 
 ## Known Issues
-* When you load the project in the Eclipse IDE, you may get some spurious validation failure messages on the pom.xml file. These are harmless and the Maven build is just 
-  fine. You can simply ignore these false validation messages or delete them by going to Markers -> XML Problem.
-* When you load the project in the Eclipse IDE, you may get some spurious validation failure messages on the web.xml file. These are harmless and the war configuration is
-  just fine. You can simply ignore these false validation messages or delete them by going to Markers -> XML Problem and Markers -> Language Servers.  
+* When you load the project in the Eclipse IDE, you may get some spurious validation failure messages on the XML deployment descriptors (these are essentially bugs in Eclipse). These are harmless and the application is just fine. You can simply ignore these false validation messages or delete them by going to the Markers tab.
 * You may get a log message stating that Payara SSL certificates have expired. This won't get in the way of functionality, but it will
   stop log messages from being printed to the IDE console. You can solve this issue by manually removing the expired certificates from the Payara domain, as 
   explained [here](https://github.com/payara/Payara/issues/3038).
