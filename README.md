@@ -112,19 +112,54 @@ sink example for demonstrating the vast amount of APIs and features in Jakarta E
 we do use a very representative set. You'll find that you'll learn a fair amount
 by simply digging into the code to see how things are implemented.
 
-## Cloud Demo
-Cargo Tracker can be deployed to Kubernetes on the cloud. To do this just [create a Kuberentes Cluster](https://jelastic.com/blog/kubernetes-cluster-scaling-pay-per-use-hosting/) and apply three files from this repository:
- 
-* **postgres-secret.yaml**
-* **postgres.yaml**
-* **cargo-tracker.yaml** 
+## Demo - Deployment Commands
+```
+#Delete default HelloWorld:
+kubectl get ing
+kubectl delete ing helloworld
+kubectl delete deploy hello-kubernetes
+kubectl delete svc hello-kubernetes
 
-> **Note**:  
- The Cargo Tracker application requires root context path "**/**" should be released. If not, just delete the ingress that holds it before applying **cargo-tracker.yaml**. In case of Jelastic clean Kubernetes cluster issue command: ***kubectl delete ing helloworld***
+
+#Install GitHub command line interface (if not available):
+yum install -y git
+#Clone the project
+git clone https://github.com/jelastic/cargotracker
+#Go to project directory
+cd cargotracker/
+
+#Apply yaml files
+#for storing db credentials 
+kubectl apply -f postgres-secret.yaml
+#for creating db 
+kubectl apply -f postgres.yaml
+#for deploying app with Payara docker image to pod with two replicas 
+kubectl apply -f cargo-tracker.yaml
+
+#Check status
+kubectl get secrets
+kubectl get deploy
+kubectl get svc
+
+#Check logs
+kubectl logs -l app=cargo-tracker --tail=100
+```
 
 Application will be available by **Open in Browser** button.
 
 ![Jelastic dashboard OiB](images/cargo_tracker_oib.png)
+
+
+## Delete Deploy
+```
+#Delete ing, deploy and svc
+kubectl delete ing cargo-tracker
+kubectl delete deploy cargo-tracker
+kubectl delete deploy postgres
+kubectl delete svc cargo-tracker
+kubectl delete svc postgres
+```
+
 
 ## Java EE 7
 A Java EE 7, Java SE 8, Payara 4.1 version of Cargo Tracker is available under the ['javaee7' branch](https://github.com/eclipse-ee4j/cargotracker/tree/javaee7).
