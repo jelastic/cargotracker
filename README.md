@@ -146,6 +146,8 @@ kubectl logs -l app=cargo-tracker --tail=100
 ```
 
 Application will be available by **Open in Browser** button.
+  
+> **Note:** It takes up to one minute for the Cargo Tracker application to start. So, clicking on **Open in Browser** button at first you can see the Payara application server front page and then wait until the JakartaEE application will be loaded simply refreshing the web page. 
 
 ![Jelastic dashboard OiB](images/cargo_tracker_oib.png)
 
